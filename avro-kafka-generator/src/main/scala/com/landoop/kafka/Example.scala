@@ -25,7 +25,7 @@ object Example extends App {
 
 
   def produceMessages(numberOfMessages: Int): Unit = {
-    for (a <- 1 to 1000) {
+    for (a <- 1 to numberOfMessages) {
       val deviceMeasurement = getMeasurement(-10, 50)
       val deviceID = getMeasurement(0, 10)
       val timestamp = DateTime.now().getMillis
