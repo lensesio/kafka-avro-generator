@@ -21,7 +21,7 @@ object Example extends App {
       val producer = new KProducer[Key, DeviceMeasurements]()
       produceMessages(Random.nextInt(100), producer)
     }
-  }, 0, 2000);
+  }, 0, 10000);
 
 
 
