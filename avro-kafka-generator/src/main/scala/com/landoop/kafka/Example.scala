@@ -11,20 +11,21 @@ object Example extends App {
   case class Key(deviceId:Int)
   case class DeviceMeasurements(deviceId:Int, temperature:Int, moreData:String, timestamp:Long)
 
-  val producer = new KProducer[Key, DeviceMeasurements]()
+
 
   val t = new Timer()
   t.schedule(new TimerTask() {
     @Override
     def run() {
       println("posting")
-      produceMessages(Random.nextInt(100))
+      val producer = new KProducer[Key, DeviceMeasurements]()
+      produceMessages(Random.nextInt(100), producer)
     }
   }, 0, 2000);
 
 
 
-  def produceMessages(numberOfMessages: Int): Unit = {
+  def produceMessages(numberOfMessages: Int, producer: KProducer[Key, DeviceMeasurements]): Unit = {
     for (a <- 1 to numberOfMessages) {
       val deviceMeasurement = getMeasurement(-10, 50)
       val deviceID = getMeasurement(0, 10)
